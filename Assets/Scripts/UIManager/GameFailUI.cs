@@ -74,6 +74,7 @@ public class GameFailUI : MonoBehaviour
 
     private void Show()
     {
+        YandexMetrica.Send("FailLevel" + GameDataManager.GetLevel());
         gameObject.SetActive(true);
     }
 

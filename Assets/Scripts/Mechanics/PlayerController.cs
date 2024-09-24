@@ -45,40 +45,37 @@ namespace Platformer.Mechanics
 
         private void HandleInterection()
         {
-            canMove = GameState.IsGameStart;
-            // var DerictionLeft = new Ray(transform.position + new Vector3(0, 1f, 0), transform.TransformDirection(Vector3.forward));
-            // var DerictionRight = new Ray(transform.position + new Vector3(0, 1f, 0), -transform.TransformDirection(Vector3.forward));
-            // var DerictionBotton = new Ray(transform.position, transform.TransformDirection(Vector3.down));
-            //
-            //
-            //
-            // Physics.Raycast(DerictionRight, out RaycastHit hitRight, 3f, moveLayerMask);
-            // Physics.Raycast(DerictionLeft, out RaycastHit hitLeft, 3f, moveLayerMask);
-            // Physics.Raycast(DerictionBotton, out RaycastHit hitBotton, 0.5f, moveLayerMask);
-            //
-            // if (hitRight.collider != null)
-            // {
-            //     dirZ = 1;
-            //     return;
-            // }
-            // if (hitLeft.collider != null)
-            // {
-            //     dirZ = 1;
-            //     return;
-            // }
-            // if (hitBotton.collider != null)
-            // {
-            //     dirZ = 1;
-            //     return;
-            // }
-            //
-            // transform.localScale = new Vector3(1, 1, dirZ);
-            // canMove = true;
+            var DerictionLeft = new Ray(transform.position + new Vector3(0, 1f, 0), transform.TransformDirection(Vector3.forward));
+            var DerictionRight = new Ray(transform.position + new Vector3(0, 1f, 0), -transform.TransformDirection(Vector3.forward));
+            var DerictionBotton = new Ray(transform.position, Vector3.down);
+            
+            Physics.Raycast(DerictionRight, out RaycastHit hitRight, 3f, moveLayerMask);
+            Physics.Raycast(DerictionLeft, out RaycastHit hitLeft, 3f, moveLayerMask);
+            Physics.Raycast(DerictionBotton, out RaycastHit hitBotton, 3f, moveLayerMask);
+            
+            if (hitRight.collider != null)
+            {
+                dirZ = 1;
+                return;
+            }
+            if (hitLeft.collider != null)
+            {
+                dirZ = 1;
+                return;
+            }
+            if (hitBotton.collider != null)
+            {
+                dirZ = 1;
+                return;
+            }
+            
+            transform.localScale = new Vector3(1, 1, dirZ);
+            canMove = true;
         }
 
         private void OnGUI()
         {
-            Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.TransformDirection(Vector3.forward));
+            Debug.DrawLine(transform.position, transform.position + Vector3.down*3f, Color.red);
         }
 
         private void HandleMovement()

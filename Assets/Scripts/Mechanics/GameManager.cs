@@ -95,6 +95,7 @@ namespace Platformer.Mechanics
                 currentLevel = Random.Range(10, model.levels.Count);
             }
 
+            YandexMetrica.Send("StartLevel" + currentLevel);
             _objLevel = Instantiate(model.levels[currentLevel], transform);
         }
 
@@ -131,6 +132,7 @@ namespace Platformer.Mechanics
             GameState.IsGameStart = false;
             GameManager.Instance.Coin += reward;
             GameDataManager.AddLevel(1);
+            YandexMetrica.Send("EndLevel" + GameDataManager.GetLevel());
             this.PostEvent(EventID.OnCarMove,true);
             if (playerRef != null)
             {

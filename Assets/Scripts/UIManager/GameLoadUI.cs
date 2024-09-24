@@ -8,8 +8,6 @@ using YG;
 
 public class GameLoadUI : MonoBehaviour
 {
-    private float loading = 0.7f;
-
     private void Awake()
     {
         YandexGame.SwitchLangEvent += s => MultiTextUI.lang = s;

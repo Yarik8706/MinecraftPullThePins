@@ -13,19 +13,23 @@ namespace Platformer.Mechanics
         [SerializeField] private float maxSpeed;
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private Animator _myAnimator;
+        [SerializeField] private DeathZone _deathZone;  
+        
 
         public AudioClip zombieAudio;
-        public AudioClip deathAudio;
-
         private bool _isDied;
         private const string IS_DEATH = "IsDeath";
 
         private void Update()
         {
-            if(GameState.IsGameStart) return;
-            HandleMovement();
             HandleInteractions();
         }
+
+        private void FixedUpdate()
+        {
+            HandleMovement();
+        }
+
         private void HandleInteractions()
         {
             Ray forwardDirection = new Ray(transform.position + new Vector3(0, 0.7f, 0), transform.TransformDirection(Vector3.forward));
@@ -87,6 +91,7 @@ namespace Platformer.Mechanics
 
         private void EnemyDeath()
         {
+            Destroy(_deathZone);
             maxSpeed = 0;
             _isDied = true;
             Destroy(GetComponent<DeathZone>());

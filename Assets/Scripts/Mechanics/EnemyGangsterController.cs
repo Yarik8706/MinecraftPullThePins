@@ -9,21 +9,15 @@ public class EnemyGangsterController : MonoBehaviour
     [SerializeField] private LayerMask layerMaskMovement;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Animator animator;
-
+    [SerializeField] private DeathZone _deathZone;
+    
     public AudioClip deathAudio;
     public float raycastDistance = 3f;
 
     private bool canMove;
-    private Rigidbody body;
-
     private const string IS_RUN = "IsRun";
     private const string IS_ATTACK = "IsAttack";
     private const string IS_DEATH = "IsDeath";
-
-    public void Start()
-    {
-        body = GetComponent<Rigidbody>();
-    }
 
     private void Update()
     {
@@ -37,8 +31,7 @@ public class EnemyGangsterController : MonoBehaviour
             HandleMovement();
         }
     }
-
-    // xu ly tuong tac
+    
     private void PerformInteractions()
     {
         RaycastHit hitLeft;
@@ -64,13 +57,13 @@ public class EnemyGangsterController : MonoBehaviour
             }
         }
     }
-    // xu ly di chuyen
+    
     private void HandleMovement()
     {
         Ray fowardDirection = new Ray(transform.position + new Vector3(0, 0.5f, 0), transform.TransformDirection(Vector3.forward));
 
         bool isDir = Physics.Raycast(fowardDirection, 0.5f, groundLayerMask);
-        var translate = Vector3.forward * Time.deltaTime * maxSpeed;
+        var translate = Vector3.forward * (Time.deltaTime * maxSpeed);
         bool isRun = translate != Vector3.zero;
         if (isRun)
         {
@@ -81,9 +74,7 @@ public class EnemyGangsterController : MonoBehaviour
         {
             transform.Rotate(0, -180, 0);
         }
-
     }
-
 
     private void OnCollisionEnter(Collision other)
     {
@@ -121,6 +112,7 @@ public class EnemyGangsterController : MonoBehaviour
 
     private void IsDeath()
     {
+        Destroy(_deathZone);
         maxSpeed = 0;
         SoundManager.instance.PlayAudioSound(deathAudio);
         animator.SetBool(IS_DEATH, true);

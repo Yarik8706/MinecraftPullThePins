@@ -36,47 +36,43 @@ public class BombController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dumbbells"))
         {
-            Exeplosion();
+            Explosion();
             return;
         }
         if (other.gameObject.CompareTag("Trap"))
         {
-            Exeplosion();
+            Explosion();
             return;
         }
         if (other.gameObject.CompareTag("Ground") && isGrounded){
-            Exeplosion();
-            return;
-        }
-        if (other.gameObject.CompareTag("Block")){
-            Exeplosion();
+            Explosion();
             return;
         }
         // collision in Enemy
         if(other.gameObject.CompareTag("Gangster"))
         {
-            Exeplosion();
+            Explosion();
             return;
         }
         if(other.gameObject.CompareTag("Zombie"))
         {
-            Exeplosion();
+            Explosion();
             return;
         }
-        // collison in Player
+        
         if (other.gameObject.CompareTag("Player") )
         {
-            Exeplosion();
+            Explosion();
             return;
         }
         if (other.gameObject.CompareTag("Pin")&& isGrounded)
         {
-            Exeplosion();
+            Explosion();
         }
      
     }
 
-    private void Exeplosion()
+    private void Explosion()
     {
         Instantiate(exeplosionEffect, transform.position, Quaternion.identity);
         

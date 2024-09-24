@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2910366793304830451}
   - component: {fileID: 1089831758943276311}
   - component: {fileID: 7178596397611407313}
-  - component: {fileID: 1651870568581859459}
   m_Layer: 0
   m_Name: Money_2
   m_TagString: Untagged
@@ -177,22 +176,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1651870568581859459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077799731831307391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea341ef4d7234d7e86bb9b8099aa99bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &4292704115419664548
 PrefabInstance:
   m_ObjectHideFlags: 0

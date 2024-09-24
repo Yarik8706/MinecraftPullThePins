@@ -19,7 +19,7 @@ namespace Platformer.Mechanics
         private void Awake()
         {
             Instance = this;
-            EventDispatcher.Instance.RegisterListener(EventID.EndGame, OnGameStartUI);
+            //EventDispatcher.Instance.RegisterListener(EventID.EndGame, OnGameStartUI);
         }
 
         public void StartLevelPlayback()

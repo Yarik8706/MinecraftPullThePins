@@ -31,8 +31,10 @@ public class PinController : MonoBehaviour
         {
             GameState.IsGameStart = true;
             SoundManager.instance.PlayAudioSound(pinAudio);
-            transform.DOMove(target.position, 0.6f);
-            Destroy(gameObject, 0.6f);
+            transform.DOMove(target.position, 0.6f).OnComplete(() =>
+            {
+                Destroy(gameObject, 0.6f);
+            });
         }
     }
 }

@@ -94,6 +94,7 @@ public class CanvasManager : MonoBehaviour
         this.PostEvent(EventID.IsPlayGame, true);
         Hide() ;
     }
+    
     private void Show()
     {
         _mainMenuUI.SetActive(true);
