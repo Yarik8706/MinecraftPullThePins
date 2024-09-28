@@ -27,7 +27,7 @@ namespace YG.Insides
             {
                 objectsTranlate.Clear();
 
-                foreach (LanguageYG obj in SceneAsset.FindObjectsByType<LanguageYG>(FindObjectsSortMode.None))
+                foreach (LanguageYG obj in SceneAsset.FindObjectsOfType<LanguageYG>())
                 {
                     objectsTranlate.Add(obj.gameObject);
                 }

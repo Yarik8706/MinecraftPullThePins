@@ -5,16 +5,12 @@ using YG;
 
 public class CanvasManager : MonoBehaviour
 {
-
     [Header("Referencs")]
     [SerializeField] GameObject openSpin;
 
     [Header("UI elements")]
     [SerializeField]
     private GameObject _mainMenuUI;
-    [SerializeField]
-    private Image _soundOfficon;
-    [SerializeField] private MusicManager _musicManager;
     
     [Header("Event CanvasManager")]
 
@@ -25,11 +21,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Button _removeAdsButton;
     [SerializeField] private Button openSpinButton;
 
-
-    private bool muted;
-
-
-
     private void OnDisable()
     {
         if (EventDispatcher.HasInstance())
@@ -37,14 +28,10 @@ public class CanvasManager : MonoBehaviour
             EventDispatcher.Instance.RemoveListener(EventID.Home, (param) => Show());
         }
     }
+    
     private void Start()
     {
-        
-        _soundOfficon.enabled = muted;
         Hide();
-        _musicManager.gameObject.SetActive(false);
-        
-
         AddEvents();
     }
     
@@ -55,13 +42,6 @@ public class CanvasManager : MonoBehaviour
         {
             SoundManager.instance.PlayAudioSound(SoundManager.instance.buttonAudio);
             OnPlayGame();
-        });
-
-        // Handle Event Button sound
-        _soundButton.onClick.AddListener(() =>
-        {
-            SoundManager.instance.PlayAudioSound(SoundManager.instance.buttonAudio);
-            HandleStateMusic();
         });
 
         //
@@ -98,54 +78,13 @@ public class CanvasManager : MonoBehaviour
     private void Show()
     {
         _mainMenuUI.SetActive(true);
-        _musicManager.gameObject.SetActive(true);
     }
-       
     
     private void Hide()
         => _mainMenuUI.SetActive(false);
     
-
-    private void HandleStateMusic()
-    {
-        if (muted)
-        {
-            muted = false;
-            Save();
-        }
-        else
-        {
-            muted = true;
-            Save();
-        }
-        UpdateStateMusic();
-    }
-  
- 
-    private void UpdateStateMusic()
-    {
-        if(muted)
-        {
-            _soundOfficon.enabled = false;
-            MusicManager.instance.OnChangeMusic(false);
-        }
-        else
-        {
-            _soundOfficon.enabled = true;
-            MusicManager.instance.OnChangeMusic(true);
-        }
-    }
-
-    private void Save()
-    {
-        YandexGame.savesData.muted = muted;
-        YandexGame.SaveProgress();
-    }
     private void OnEnable()
     {
-        muted = YandexGame.savesData.muted;
         this.RegisterListener(EventID.Home, (param) => Show());
-
     }
-
 }

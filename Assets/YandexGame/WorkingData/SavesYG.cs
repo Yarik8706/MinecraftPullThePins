@@ -12,7 +12,8 @@ namespace YG
 
         public string shopData;
         public string playerData;
-        public bool muted;
+        public bool mutedMusic = false;
+        public bool mutedSound = false;
         public int allMoney;
         public string openLevels;
         public int freeSpin;

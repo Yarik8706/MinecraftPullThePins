@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Flatformer.GameData.UIManager;
 using Platformer.Mechanics;
 using ShopMechanics;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Flatformer.GameData
             YandexGame.InitEnvirData();
             Optimizer.Instance.Init();
             GameDataManager.InitData();
+            EffectsStateUI.Instance.Init();
+            MusicStateUI.Instance.Init();
             YandexGame.NewLeaderboardScores("Score", YandexGame.savesData.allMoney);
             YandexGame.GetLeaderboard("Score",
                 Int32.MaxValue, Int32.MaxValue, 

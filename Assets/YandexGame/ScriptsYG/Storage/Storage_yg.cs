@@ -11,16 +11,13 @@ namespace YG
     public partial class YandexGame
     {
         public static SavesYG savesData = new SavesYG();
-        public static Action onResetProgress;
-
-        private enum DataState { Exist, NotExist, Broken };
-        private static bool isResetProgress;
+        enum DataState { Exist, NotExist, Broken };
 
 
         [DllImport("__Internal")]
         private static extern string InitCloudStorage_js();
 
-        [InitBaisYG]
+        [InitYG]
         public static void InitCloudStorage()
         {
 #if !UNITY_EDITOR
@@ -29,16 +26,6 @@ namespace YG
 #else
             LoadProgress();
 #endif
-        }
-
-        [StartYG]
-        private static void OnResetProgress()
-        {
-            if (isResetProgress)
-            {
-                isResetProgress = false;
-                onResetProgress?.Invoke();
-            }
         }
 
 #if UNITY_EDITOR
@@ -84,6 +71,7 @@ namespace YG
 #else
                 savesData = JsonUtility.FromJson<SavesYG>(json);
 #endif
+                AfterLoading();
             }
             else
             {
@@ -118,25 +106,27 @@ namespace YG
                 savesData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
 #endif
             }
+
+            AfterLoading();
         }
 
+        static void AfterLoading()
+        {
+            GetDataInvoke();
+        }
+
+        public static Action onResetProgress;
         public void _ResetSaveProgress()
         {
             Message("Reset Save Progress");
-            int idSave = savesData.idSave;
-            savesData = new SavesYG { idSave = idSave, isFirstSession = false };
-
-            if (Time.unscaledTime < 0.5f)
-            {
-                isResetProgress = true;
-            }
-            else
-            {
-                onResetProgress?.Invoke();
-                GetDataInvoke();
-            }
+            savesData = new SavesYG { isFirstSession = false };
+            onResetProgress?.Invoke();
+            GetDataInvoke();
         }
-        public static void ResetSaveProgress() => Instance._ResetSaveProgress();
+        public static void ResetSaveProgress()
+        {
+            Instance._ResetSaveProgress();
+        }
 
         public void _SaveProgress()
         {
@@ -167,8 +157,6 @@ namespace YG
 #else
             LoadEditor();
 #endif
-            if (savesData.idSave > 0)
-                GetDataInvoke();
         }
         public static void LoadProgress() => Instance._LoadProgress();
 
@@ -217,6 +205,7 @@ namespace YG
                     else Message("Load Cloud Complete! Local saves are disabled.");
 
                     savesData = cloudData;
+                    AfterLoading();
                 }
                 return;
             }
@@ -251,16 +240,19 @@ namespace YG
                     Message($"Load Local Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
                     savesData = localData;
                 }
+                AfterLoading();
             }
             else if (cloudDataState == DataState.Exist)
             {
                 savesData = cloudData;
                 Message("Load Cloud Complete! Local Data - " + localDataState);
+                AfterLoading();
             }
             else if (localDataState == DataState.Exist)
             {
                 savesData = localData;
                 Message("Load Local Complete! Cloud Data - " + cloudDataState);
+                AfterLoading();
             }
             else if (cloudDataState == DataState.Broken ||
                 (cloudDataState == DataState.Broken && localDataState == DataState.Broken))
@@ -274,6 +266,7 @@ namespace YG
                 savesData = JsonUtility.FromJson<SavesYG>(data);
 #endif
                 Message("Cloud Saves Partially Restored!");
+                AfterLoading();
             }
             else if (localDataState == DataState.Broken)
             {
@@ -286,6 +279,7 @@ namespace YG
                 savesData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
 #endif
                 Message("Local Saves Partially Restored!");
+                AfterLoading();
             }
             else
             {
@@ -317,6 +311,7 @@ namespace YG
             LoadYG(true);
 #else
             LoadEditor();
+            GetDataEvent?.Invoke();
 #endif
         }
     }

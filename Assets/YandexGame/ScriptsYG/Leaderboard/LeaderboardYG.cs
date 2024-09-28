@@ -8,7 +8,7 @@ using YG.Utils.Lang;
 
 namespace YG
 {
-    [DefaultExecutionOrder(-101), HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#7f075606f6c24091926fa3ad7ab59d10")]
+    [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#7f075606f6c24091926fa3ad7ab59d10")]
     public class LeaderboardYG : MonoBehaviour
     {
         [Tooltip("Техническое название соревновательной таблицы")]
@@ -82,7 +82,7 @@ namespace YG
 
         private void OnEnable()
         {
-            YandexGame.onGetLeaderboard += OnUpdateLB;
+             YandexGame.onGetLeaderboard+= OnUpdateLB;
 
             if (updateLBMethod == UpdateLBMethod.OnEnable && YandexGame.initializedLB)
             {

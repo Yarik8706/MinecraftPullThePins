@@ -83,9 +83,7 @@ namespace YG
                     "\nbrowserLang - " + YandexGame.EnvironmentData.browserLang +
                     "\npayload - " + YandexGame.EnvironmentData.payload +
                     "\npromptCanShow - " + YandexGame.EnvironmentData.promptCanShow +
-                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow +
-                    "\nplatform - " + YandexGame.EnvironmentData.platform +
-                    "\nbrowser - " + YandexGame.EnvironmentData.browser;
+                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow;
             }
         }
 
@@ -96,12 +94,12 @@ namespace YG
 
         public void AuthCheckButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._RequestAuth();
+            GameObject.FindObjectOfType<YandexGame>()._RequestAuth();
         }
 
         public void AuthDialogButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._OpenAuthDialog();
+            GameObject.FindObjectOfType<YandexGame>()._OpenAuthDialog();
         }
 
         public void FullAdButton()
@@ -140,7 +138,7 @@ namespace YG
 
         public void RedefineLangButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._LanguageRequest();
+            GameObject.FindObjectOfType<YandexGame>()._LanguageRequest();
         }
 
         public void SwitchLanguage(Text text)

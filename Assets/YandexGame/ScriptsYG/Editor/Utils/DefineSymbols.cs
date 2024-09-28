@@ -9,7 +9,7 @@ namespace YG.Insides.Utils
         public static bool CheckDefine(string define)
         {
             BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            string defines = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup));
+            string defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
 
             if (defines.Contains(define))
             {
@@ -21,18 +21,18 @@ namespace YG.Insides.Utils
         public static void AddDefine(string define)
         {
             BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            string defines = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup));
+            string defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
 
             if (defines.Contains(define))
                 return;
 
-            PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup), (defines + ";" + define));
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, (defines + ";" + define));
         }
 
         public static void RemoveDefine(string define)
         {
             BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            string defines = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup));
+            string defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
 
             if (defines.Contains(define))
             {
@@ -48,7 +48,7 @@ namespace YG.Insides.Utils
                 }
 
                 string newDefines = string.Join(";", updatedDefines);
-                PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup), newDefines);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefines);
             }
         }
 

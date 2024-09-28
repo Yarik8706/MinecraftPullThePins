@@ -9,7 +9,7 @@ namespace YG
         public static string lang = "ru";
         public static Action<string> SwitchLangEvent;
 
-        [InitYG]
+        [StartYG]
         public static void InitLang()
         {
 #if !UNITY_EDITOR
@@ -33,8 +33,8 @@ namespace YG
                 }
                 else if (Instance.infoYG.callingLanguageCheck == InfoYG.CallingLanguageCheck.FirstLaunchOnly)
                 {
-                    lang = LoadKeyLang();
-                    SwitchLangEvent?.Invoke(lang);
+                    string loadLang = LoadKeyLang();
+                    SwitchLangEvent?.Invoke(loadLang);
                 }
             }
         }

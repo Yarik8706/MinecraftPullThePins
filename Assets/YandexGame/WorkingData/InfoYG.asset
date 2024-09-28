@@ -17,14 +17,14 @@ MonoBehaviour:
   autoGameReadyAPI: 1
   playerInfoSimulation:
     authorized: 1
-    isMobile: 0
-    language: en
+    isMobile: 1
+    language: ru
     name: Player this
     uniqueID: 000
     photo: https://justplaygames.ru/public/icon_player.png
   AdWhenLoadingScene: 1
   showFirstAd: 1
-  rewardedAfterClosing: 0
+  rewardedAfterClosing: 1
   adDisplayCalls: 0
   fullscreenAdInterval: 60
   durationOfAdSimulation: 0.5
@@ -181,7 +181,7 @@ MonoBehaviour:
       rank: 2
       score: 10
   LocalizationEnable: 1
-  callingLanguageCheck: 1
+  callingLanguageCheck: 0
   translateMethod: 0
   domainAutoLocalization: com
   CSVFileTranslate:
@@ -291,8 +291,8 @@ MonoBehaviour:
     imageURI: https://justplaygames.ru/public/Paymant3.png
     priceValue: 30
     consumed: 1
-  metricaEnable: 0
-  metricaCounterID: 0
+  metricaEnable: 1
+  metricaCounterID: 97304383
   debug: 1
   archivingBuild: 1
   logoImageFormat: 1

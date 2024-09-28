@@ -120,7 +120,6 @@ namespace Flatformer.GameData
                 };
                 SaveShopData();
             }
-            MusicManager.instance.InitData();
         }
 
         private static void SavePlayerData()
