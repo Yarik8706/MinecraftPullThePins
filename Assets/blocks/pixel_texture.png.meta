@@ -3,7 +3,7 @@ guid: f93fc23de096f8a44988eb68e582c743
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -543,7 +543,7 @@ TextureImporter:
         width: 11
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -551,6 +551,69 @@ TextureImporter:
       bones: []
       spriteID: f44e59b65972a214dafc8d8e7c962fec
       internalID: 2085962832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: learningStep
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 960
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.37920785, y: 0.6657493}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c3fc1428a5ba64f9b55bec45d1b8ec
+      internalID: 1478583526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: learningButtonUI
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 983
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3cf3050f52d074b9b0c60f50ee2d7f
+      internalID: -2067117864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blockImage
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 968
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6271aa0094b2894480dc7c18487f985
+      internalID: -736240891
       vertices: []
       indices: 
       edges: []
@@ -567,6 +630,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       arrow: -1192693136
+      blockImage: -736240891
       clickImage: 1514730398
       fortuneWheel1: -1114285111
       fortunewheel: 987144468
@@ -574,6 +638,8 @@ TextureImporter:
       frame2: -1422264667
       frame3: -1255811356
       home: -415142911
+      learningButtonUI: -2067117864
+      learningStep: 1478583526
       music: 2085962832
       noobHeroSelect: -808530726
       playerHeroSelect: -711832960

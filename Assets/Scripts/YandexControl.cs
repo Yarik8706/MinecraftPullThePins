@@ -24,7 +24,7 @@ namespace Flatformer.GameData
             Optimizer.Instance.Init();
             GameDataManager.InitData();
             EffectsStateUI.Instance.Init();
-            MusicStateUI.Instance.Init();
+            if(MusicStateUI.Instance != null) MusicStateUI.Instance.Init();
             YandexGame.NewLeaderboardScores("Score", YandexGame.savesData.allMoney);
             YandexGame.GetLeaderboard("Score",
                 Int32.MaxValue, Int32.MaxValue, 
@@ -32,6 +32,7 @@ namespace Flatformer.GameData
             ShopManager.Instance.Init();
             GameSharedUI.instance.Init();
             GameStartUI.Instance.Init();
+            LearningStateUI.Instance.Init();
         }
     }
 }

@@ -165,7 +165,6 @@ namespace Flatformer.GameData
 
         public static void AddLevel(int value)
         {
-            YandexMetrica.Send("Level" + _playerData.GetLevel());
             _playerData.AddLevel(value);
             SavePlayerData();
         }

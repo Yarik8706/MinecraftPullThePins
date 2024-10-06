@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: coal
       objectReference: {fileID: 0}
+    - target: {fileID: 2251859706749779341, guid: eec5ee069945e6040b9ccf2e39c701d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67ac7a29d7e2a944dbeb129aad601f77, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

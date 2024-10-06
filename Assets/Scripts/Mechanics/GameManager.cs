@@ -4,6 +4,7 @@ using Platformer;
 using Platformer.Model;
 using Platformer.Observer;
 using System.Collections.Generic;
+using Unitilies;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,17 +16,7 @@ namespace Platformer.Mechanics
 {
     public class GameManager : MonoBehaviour
     {
-
-        #region Singleton Class: GameManager
         public static GameManager Instance { get; private set; }
-
-        private void OnEnable()
-        {
-            Instance = this;
-            this.RegisterListener(EventID.Start, (param) => StartGame());
-            this.RegisterListener(EventID.Replay, (param) => ReplayGame());
-        }
-        #endregion
         
         [SerializeField] private PlatformerModel model;
         [SerializeField] private Canvas Canvas;
@@ -33,9 +24,10 @@ namespace Platformer.Mechanics
 
         public int currentLevel;
         public List<GameObject> listEffect = new();
+        public GameObject learningBlockPrefab;
 
         private GameObject _objLevel;
-
+        
         private const string IS_WIN = "IsWin";
         private const string IS_DEATH = "IsDeath";
         
@@ -43,6 +35,7 @@ namespace Platformer.Mechanics
 
         private void Awake()
         {
+            Instance = this;
 #if UNITY_EDITOR
             YandexGame.ResetSaveProgress();
 #endif
@@ -58,6 +51,12 @@ namespace Platformer.Mechanics
                 EventDispatcher.Instance.RemoveListener(EventID.Start, (param) => StartGame());
                 EventDispatcher.Instance.RemoveListener(EventID.Replay, (param) => ReplayGame());
             }
+        }
+        
+        private void OnEnable()
+        {
+            this.RegisterListener(EventID.Start, (param) => StartGame());
+            this.RegisterListener(EventID.Replay, (param) => ReplayGame());
         }
 
         public void StartGame()
@@ -75,6 +74,7 @@ namespace Platformer.Mechanics
             {
                 Destroy(effect.gameObject);
             }
+            GameState.IsGameStart = false;
             _objLevel = Instantiate(model.levels[currentLevel],transform) as GameObject;
         }
 
@@ -95,7 +95,9 @@ namespace Platformer.Mechanics
                 currentLevel = Random.Range(10, model.levels.Count);
             }
 
-            YandexMetrica.Send("StartLevel" + currentLevel);
+            this.PostEvent(EventID.NextLevel);
+            GameState.IsGameStart = false;
+            MetricaSender.Instance.SendLevelStartData();
             _objLevel = Instantiate(model.levels[currentLevel], transform);
         }
 
@@ -117,6 +119,7 @@ namespace Platformer.Mechanics
             GameState.IsGameStart = false;
             SoundManager.instance.PlayAudioFail();
             this.PostEvent(EventID.Loss);
+            MetricaSender.Instance.SendLevelFailedData();
             if (playerRef != null)
             {
                 playerRef.isControlEnable = false;
@@ -130,9 +133,9 @@ namespace Platformer.Mechanics
         {
             if(!GameState.IsGameStart) return;
             GameState.IsGameStart = false;
-            GameManager.Instance.Coin += reward;
+            Instance.Coin += reward;
+            MetricaSender.Instance.SendLevelCompleteData();
             GameDataManager.AddLevel(1);
-            YandexMetrica.Send("EndLevel" + GameDataManager.GetLevel());
             this.PostEvent(EventID.OnCarMove,true);
             if (playerRef != null)
             {
