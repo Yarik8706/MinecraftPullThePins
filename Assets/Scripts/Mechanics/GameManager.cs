@@ -36,9 +36,6 @@ namespace Platformer.Mechanics
         private void Awake()
         {
             Instance = this;
-#if UNITY_EDITOR
-            YandexGame.ResetSaveProgress();
-#endif
             YandexGame.InitEnvirData();
             Canvas.GetComponent<CanvasScaler>().matchWidthOrHeight =
                 YandexGame.EnvironmentData.deviceType == "desktop" ? 1 : 0;
@@ -93,6 +90,11 @@ namespace Platformer.Mechanics
             if (GameDataManager.GetLevel() >= model.levels.Count)
             {
                 currentLevel = Random.Range(10, model.levels.Count);
+            }
+
+            if (GameDataManager.GetLevel() != 0 && GameDataManager.GetLevel() % 6 == 0)
+            {
+                YandexGame.ReviewShow(false);
             }
 
             this.PostEvent(EventID.NextLevel);

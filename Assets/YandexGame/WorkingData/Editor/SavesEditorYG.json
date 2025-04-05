@@ -1,14 +1,14 @@
 {
-    "idSave": 2,
+    "idSave": 13,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "shopData": "{\"purchaseAsCharacters\":[0],\"secondPurchaseAsCharacters\":[0]}",
-    "playerData": "{\"coins\":50,\"level\":0,\"selectCharacterIndex\":0,\"secondSelectCharacterIndex\":0}",
+    "shopData": "{\"purchaseAsCharacters\":[0,1,2,5],\"secondPurchaseAsCharacters\":[0]}",
+    "playerData": "{\"coins\":300,\"level\":0,\"selectCharacterIndex\":5,\"secondSelectCharacterIndex\":0}",
     "mutedMusic": false,
     "mutedSound": false,
-    "allMoney": 0,
+    "allMoney": 750,
     "openLevels": "",
-    "freeSpin": 0,
+    "freeSpin": 300,
     "isNeedLearning": true
 }

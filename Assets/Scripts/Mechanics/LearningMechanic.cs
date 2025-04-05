@@ -60,7 +60,7 @@ namespace Mechanics
         private IEnumerator WaifForBlockDelete(int index)
         {
             var oldPosition = _learningSteps[index].targetBlockForDelete.transform.position;
-            yield return new WaitUntil(() => _learningSteps[index].targetBlockForDelete.transform.position != oldPosition);
+            yield return new WaitWhile(() => _learningSteps[index].targetBlockForDelete && _learningSteps[index].targetBlockForDelete.transform.position == oldPosition);
             _activeLearningBlock.SetActive(false);
             yield return new WaitForSeconds(0.5f);
             _activeLearningBlock.SetActive(true);

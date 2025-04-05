@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 525229983699430169}
   - component: {fileID: 8546807046354612624}
   m_Layer: 0
-  m_Name: Level 1
+  m_Name: Level 48
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525229983699430168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6082c9a3d904af183d0906032b214e2, type: 3}
   m_Name: 
